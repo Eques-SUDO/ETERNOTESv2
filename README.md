@@ -13,6 +13,17 @@ npm run build    # production build in dist/
 npm run preview  # serve the production build locally
 ```
 
+## Deploy to Netlify
+
+Import `Eques-SUDO/ETERNOTESv2` from GitHub in Netlify and deploy the `main`
+branch. The root `netlify.toml` sets the build command (`npm run build`),
+publish directory (`dist`), Node.js version, and public Apps Script form URL.
+Leave the base directory empty. No separate form environment variable is needed
+for Netlify; the endpoint is public and included in the frontend build.
+
+After deployment, submit a test audition and confirm its row appears in the
+Google Sheet's `Submissions` tab. Future pushes to `main` trigger new builds.
+
 ## Languages
 
 Use the **EN / FR** buttons in the navigation to switch between English and

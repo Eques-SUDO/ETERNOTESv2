@@ -1,0 +1,8 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+  # Public form endpoint, embedded by Vite in the website's JavaScript.
+  VITE_GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzHpGwHaDcQSHBtYDT8TRl0vDA3j8XA3zl0bXCl2gRkPlmi4xrWQClteZwvw7gbOMZp8g/exec"
