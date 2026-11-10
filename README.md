@@ -97,3 +97,4 @@ notes, the star, a halo, and gold dust, with a staged draw-on intro.
   Set `VITE_GOOGLE_APPS_SCRIPT_URL` in `.env.local` after deploying the script.
 - **Socials**: the official Instagram and TikTok profiles are shared by the footer
   and gallery through `src/data/socialProfiles.js`.
+# ETERNOTESv2
