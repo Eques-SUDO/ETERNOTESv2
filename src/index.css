@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+@theme {
+  /* ETERNOTES official palette */
+  --color-mocha: #49342e;
+  --color-cocoa: #88685b;
+  --color-champagne: #c6a879;
+  --color-gold-ink: #79592e;
+  --color-sand: #e9dccb;
+  --color-ivory: #faf5ee;
+  --color-parchment: #f4ecdf;
+
+  --font-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-body: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+
+  --animate-marquee: marquee 30s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-ivory);
+  color: var(--color-mocha);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--color-champagne);
+  color: var(--color-mocha);
+}
+
+/* Elegant thin scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--color-ivory); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-cocoa);
+  border-radius: 8px;
+  border: 2px solid var(--color-ivory);
+}
+
+/* 3D canvas skeleton shimmer */
+.skeleton-shimmer {
+  background: linear-gradient(
+    110deg,
+    var(--color-sand) 35%,
+    var(--color-ivory) 50%,
+    var(--color-sand) 65%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+/* Film-grain texture overlay (SVG turbulence, zero network cost) */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Faint musical stave lines for the hero backdrop */
+.hero-backdrop {
+  background: radial-gradient(
+    ellipse at 70% 30%,
+    var(--color-sand) 0%,
+    var(--color-ivory) 55%
+  );
+}
+
+/* Separate opacity keeps this decorative mark consistent without color-mix. */
+.hero-wordmark {
+  color: var(--color-mocha);
+  opacity: 0.1;
+}
+
+/* A fully visible footer signature, sized to keep its letterforms unclipped. */
+.footer-wordmark {
+  margin: 0;
+  padding-block: 0.08em;
+  color: var(--color-champagne);
+  font-size: clamp(2.75rem, 13.4vw, 11rem);
+  line-height: 1;
+  letter-spacing: 0.035em;
+}
+
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .footer-wordmark {
+    background-image: linear-gradient(
+      155deg,
+      var(--color-ivory) -30%,
+      var(--color-champagne) 45%,
+      var(--color-cocoa) 130%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+}
+
+.stave-lines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 56px,
+    color-mix(in srgb, var(--color-mocha) 7%, transparent) 56px,
+    color-mix(in srgb, var(--color-mocha) 7%, transparent) 57px
+  );
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, black 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, black 20%, transparent 75%);
+}
+
+/* Floating decorative music glyphs — transform-only, compositor-friendly */
+.float-note {
+  animation: float-note var(--dur, 16s) ease-in-out var(--delay, 0s) infinite;
+}
+@keyframes float-note {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-3deg); }
+  50% { transform: translate3d(6px, -20px, 0) rotate(5deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .float-note { animation: none; }
+}
+
+/* Glassmorphism helper for the nav */
+.glass-nav {
+  background: color-mix(in srgb, var(--color-ivory) 72%, transparent);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+}
+
+/* Masonry columns for the gallery */
+.masonry {
+  columns: 1;
+  column-gap: 1rem;
+}
+@media (min-width: 640px) { .masonry { columns: 2; } }
+@media (min-width: 1024px) { .masonry { columns: 3; } }
+.masonry > * {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+}
